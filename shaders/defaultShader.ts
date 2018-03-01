@@ -24,7 +24,7 @@ class LitShader implements IFragmentShader<Vertex>{
     }
 
     exec(v: Vertex, normal: Vector3):Color{
-        var alignment = Math.max(-this.lightDirection.dot(normal), 0)
+        var alignment = Math.max(-this.lightDirection.dot(v.normal), 0)
         var brightness = Math.round(alignment * 255)
         return new Color(brightness,brightness,brightness,255)
     }

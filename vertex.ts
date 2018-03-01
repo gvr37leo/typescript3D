@@ -9,10 +9,10 @@ class Vertex implements ISteppable<Vertex>{
     uv:Vector2
     normal:Vector3
 
-    constructor(pos:Vector3, uv:Vector2){
+    constructor(pos:Vector3, uv:Vector2,normal:Vector3){
         this.pos = pos
         this.uv = uv
-        this.normal = new Vector3(1,1,1)
+        this.normal = normal
     }
 
     mult(n:number){
@@ -47,7 +47,7 @@ class Vertex implements ISteppable<Vertex>{
 
 
     copy(): Vertex {
-        var v = new Vertex(this.pos.c() as Vector3,this.uv.c())
+        var v = new Vertex(this.pos.c() as Vector3,this.uv.c(),this.normal.c())
         v.normal = this.normal.c() as Vector3
         return v
     }

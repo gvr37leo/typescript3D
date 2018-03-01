@@ -6,16 +6,23 @@
 class Mesh implements IMesh<Vertex>{
 
 
-    faces:Face[]
-    positions:Vector3[]
-    uvs:Vector2[]
-    normals:Vector3[]
+    faces:Face[] = []
+    positions:Vector3[] = []
+    uvs:Vector2[] = []
+    normals:Vector3[] = []
     fragmentShader:IFragmentShader<Vertex>
     vertexShader:IVertexShader<Vertex>
+
+    constructor(){
+
+    }
 
     rotate(axes:Vector3,radians:number){
         var rotmatrix = Matrix.rotate(axes,radians)
         for(var v of this.positions){
+            rotmatrix.multV(v)
+        }
+        for(var v of this.normals){
             rotmatrix.multV(v)
         }
     }
@@ -52,7 +59,7 @@ class Mesh implements IMesh<Vertex>{
     }
 
     assembleVertex(vertexPointer: VertexPointer): Vertex {
-        return new Vertex(this.positions[vertexPointer.position].c(),this.uvs[vertexPointer.uv].c())
+        return new Vertex(this.positions[vertexPointer.position].c(),this.uvs[vertexPointer.uv].c(),this.normals[vertexPointer.normal].c())
     }
 
     getFaces(): Face[] {

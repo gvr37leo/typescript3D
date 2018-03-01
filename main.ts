@@ -22,7 +22,7 @@ var rotspeed = 3
 var trans = new Vector3(0,0,2)
 // var aabb = Mesh.parseOBJFile(bunny).findAABB()
 
-ImageX.fromPath('barrel.jpg',(imageX) => {
+ImageX.fromPath('images/barrel.jpg',(imageX) => {
     var pipeline = new Pipeline(gfx)
 
     loop((dt) => {
@@ -40,15 +40,15 @@ ImageX.fromPath('barrel.jpg',(imageX) => {
         if(keys[68]){
             yrot -= dt * rotspeed
         }
-        // var mesh = Mesh.parseOBJFile(cubefile)
-        var mesh = Mesh.quad()
+        var mesh = Mesh.parseOBJFile(cubefile)
+        // var mesh = Mesh.quad()
         var aabb = mesh.findAABB()
         mesh.fragmentShader = new LitShader()
         mesh.vertexShader = new VertexShaderDef()
         
         mesh.rotate(new Vector3(0,1,0),yrot)
         mesh.rotate(new Vector3(1,0,0),xrot)
-        mesh.translate(aabb.center.c().scale(-1).add(new Vector3(0,0,aabb.radius ** 2)))
+        mesh.translate(aabb.center.c().scale(-1).add(new Vector3(0,0,aabb.radius * 2)))
         
 
 
