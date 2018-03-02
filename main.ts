@@ -43,7 +43,7 @@ ImageX.fromPath('images/barrel.jpg',(imageX) => {
         var mesh = Mesh.parseOBJFile(cubefile)
         // var mesh = Mesh.quad()
         var aabb = mesh.findAABB()
-        mesh.fragmentShader = new LitShader()
+        mesh.fragmentShader = new LitAndTextured(imageX)
         mesh.vertexShader = new VertexShaderDef()
         
         mesh.rotate(new Vector3(0,1,0),yrot)

@@ -82,4 +82,16 @@ class Color{
         this.b = b
         this.a = a
     }
+
+    mul(color:Color):Color{
+        this.r = this.mulchannel(this.r,color.r)
+        this.g = this.mulchannel(this.g,color.g)
+        this.b = this.mulchannel(this.b,color.b)
+        this.a = this.mulchannel(this.a,color.a)
+        return this
+    }
+
+    mulchannel(a,b){
+        return Math.round((a / 255) * (b / 255) * 255)
+    }
 }
